@@ -1,5 +1,7 @@
 import numpy as np
 
+import pdb
+
 from src.rrt.tree import Tree
 from src.utilities.geometry import distance_between_points
 
@@ -81,6 +83,8 @@ class RRTBase(object):
         :return: vertex, new steered vertex, vertex, nearest vertex in tree to new vertex
         """
         x_rand = self.X.sample_free()
+        pdb.set_trace()
+
         x_nearest = self.get_nearest(tree, x_rand)
         x_new = self.steer(x_nearest, x_rand, q[0])
         # check if new point is in X_free and not already in V

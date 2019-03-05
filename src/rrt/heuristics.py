@@ -1,7 +1,7 @@
 # This file is subject to the terms and conditions defined in
 # file 'LICENSE', which is part of this source code package.
 
-from src.utilities.geometry import distance_between_points
+from src.utilities.geometry import distance_between_points, multiagent_dist_between_points
 
 
 def cost_to_go(a: tuple, b: tuple) -> float:
@@ -38,3 +38,22 @@ def segment_cost(a, b):
     :return: segment_cost function between a and b
     """
     return distance_between_points(a, b)
+
+def multiagent_path_cost( E, a, b ):
+    """
+    Cost of the unique path from x_init to x
+    :param E: edges, in form of E[child] = parent
+    :param a: initial location
+    :param b: goal location
+    :return: segment_cost of unique path from x_init to x
+    """
+    cost = 0
+    while not b == a:
+        p = E[b]
+        cost += multiagent_dist_between_points(b, p)
+        b = p
+
+    return cost
+
+def multiagent_segment_cost(x_near, x_new):
+    return multiagent_dist_between_points(x_near, x_new)

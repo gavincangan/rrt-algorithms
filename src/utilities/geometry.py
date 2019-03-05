@@ -2,7 +2,7 @@
 # file 'LICENSE', which is part of this source code package.
 
 import math
-
+import numpy as np
 
 def distance_between_points(a, b):
     """
@@ -14,3 +14,7 @@ def distance_between_points(a, b):
     distance = sum(map(lambda a_b: (a_b[0] - a_b[1]) ** 2, zip(a, b)))
 
     return math.sqrt(distance)
+
+def multiagent_dist_between_points(a, b):
+    cost = np.sum( (  np.array(a)-np.array(b) )**2 )
+    return cost
